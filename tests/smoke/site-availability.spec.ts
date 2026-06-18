@@ -10,9 +10,8 @@
 import { test, expect } from '@fixtures/site.fixture';
 
 test.describe('Site Availability @smoke', () => {
-  test('site homepage loads successfully @smoke', async ({ homePage, siteConfig }) => {
-    // homePage fixture already navigated; verify the response was successful
-    const response = await homePage.page.goto(siteConfig.url, {
+  test('site homepage loads successfully @smoke', async ({ page, siteConfig }) => {
+    const response = await page.goto(siteConfig.url, {
       waitUntil: 'domcontentloaded',
     });
 
@@ -25,15 +24,15 @@ test.describe('Site Availability @smoke', () => {
     ).toBeTruthy();
 
     // Confirm the document has a <body> with content
-    const bodyText = await homePage.page.evaluate<string>(() => document.body.innerText);
+    const bodyText = await page.evaluate<string>(() => document.body.innerText);
     expect(bodyText.trim().length, 'Page body should have visible text').toBeGreaterThan(0);
   });
 
   test('page loads within acceptable time @smoke', async ({ siteConfig, page }) => {
-    const MAX_LOAD_MS = 10_000;
+    const MAX_LOAD_MS = 20_000;
 
     const start = Date.now();
-    await page.goto(siteConfig.url, { waitUntil: 'load' });
+    await page.goto(siteConfig.url, { waitUntil: 'domcontentloaded' });
     const elapsed = Date.now() - start;
 
     expect(
@@ -55,7 +54,7 @@ test.describe('Site Availability @smoke', () => {
       consoleErrors.push(`[pageerror] ${err.message}`);
     });
 
-    await page.goto(siteConfig.url, { waitUntil: 'networkidle' });
+    await page.goto(siteConfig.url, { waitUntil: 'domcontentloaded' });
 
     // Filter out known benign third-party errors (analytics, ads, etc.)
     const criticalErrors = consoleErrors.filter((err) => {

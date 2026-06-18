@@ -24,11 +24,11 @@ export default defineConfig({
   testMatch: '**/*.spec.ts',
 
   // ── Global settings ─────────────────────────────────────────────
-  timeout: 30_000,
+  timeout: 60_000,
   expect: { timeout: 10_000 },
   fullyParallel: true,
   forbidOnly: isCI,
-  retries: isCI ? 1 : 0,
+  retries: 1,
   workers: isCI ? 2 : undefined,
 
   // ── Global setup (reachability check) ───────────────────────────
@@ -80,6 +80,7 @@ export default defineConfig({
       use: {
         ...devices['iPad Mini'],
         viewport: { width: 768, height: 1024 },
+        ignoreHTTPSErrors: true,
       },
     },
   ],

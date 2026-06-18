@@ -1,23 +1,32 @@
-﻿{
-    "name":  "Desert Saber",
-    "url":  "https://desertsaber.com",
-    "description":  "",
-    "industry":  "",
-    "hasContactForm":  true,
-    "expectedNavItems":  [
-
-                         ],
-    "viewports":  [
-                      "desktop",
-                      "mobile",
-                      "tablet"
-                  ],
-    "skipVisual":  false,
-    "skipForms":  false,
-    "auth":  {
-                 "required":  false,
-                 "loginUrl":  "",
-                 "username":  "",
-                 "password":  ""
-             }
+{
+  "name": "Desert Saber",
+  "url": "https://desertsaber.com",
+  "description": "Virtual training and simulation platform using synthetic learning environments for industrial workforce development",
+  "industry": "Training & Simulation / Industrial EdTech",
+  "hasContactForm": true,
+  "expectedNavItems": [
+    "Home",
+    "Add'l Features",
+    "Value",
+    "Platform",
+    "Differentiation",
+    "Testimonials",
+    "About Us",
+    "Videos",
+    "Contact Us",
+    "Customers"
+  ],
+  "viewports": [
+    "desktop",
+    "mobile",
+    "tablet"
+  ],
+  "skipVisual": false,
+  "skipForms": false,
+  "auth": {
+    "required": false,
+    "loginUrl": "",
+    "username": "",
+    "password": ""
+  }
 }
