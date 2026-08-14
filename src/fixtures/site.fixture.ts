@@ -14,6 +14,10 @@ import { loadSiteConfig, type SiteConfig } from '@site-types/site-config.types';
 import { HomePage } from '@pages/home.page';
 import { NavigationPage } from '@pages/navigation.page';
 import { ContactFormPage } from '@pages/contact.page';
+import { PlatformPage } from '@pages/platform.page';
+import { TestimonialsPage } from '@pages/testimonials.page';
+import { VideosPage } from '@pages/videos.page';
+import { ContentSectionPage } from '@pages/content-section.page';
 
 // ── Fixture type definitions ─────────────────────────────────────────────────
 
@@ -26,6 +30,14 @@ export interface Fixtures {
   navigationPage: NavigationPage;
   /** ContactFormPage page object (does not auto-navigate) */
   contactPage: ContactFormPage;
+  /** PlatformPage page object (does not auto-navigate) */
+  platformPage: PlatformPage;
+  /** TestimonialsPage page object (does not auto-navigate) */
+  testimonialsPage: TestimonialsPage;
+  /** VideosPage page object (does not auto-navigate) */
+  videosPage: VideosPage;
+  /** Generic ContentSectionPage for simple content pages */
+  contentPage: ContentSectionPage;
 }
 
 // ── Extended test object ─────────────────────────────────────────────────────
@@ -66,6 +78,42 @@ export const test = base.extend<Fixtures>({
   contactPage: async ({ page, siteConfig }, use) => {
     const contactPage = new ContactFormPage(page, siteConfig);
     await use(contactPage);
+  },
+
+  /**
+   * platformPage — constructs PlatformPage without navigating.
+   * Call navigateToPlatform() in beforeEach.
+   */
+  platformPage: async ({ page, siteConfig }, use) => {
+    const platformPage = new PlatformPage(page, siteConfig);
+    await use(platformPage);
+  },
+
+  /**
+   * testimonialsPage — constructs TestimonialsPage without navigating.
+   * Call navigateToTestimonials() in beforeEach.
+   */
+  testimonialsPage: async ({ page, siteConfig }, use) => {
+    const testimonialsPage = new TestimonialsPage(page, siteConfig);
+    await use(testimonialsPage);
+  },
+
+  /**
+   * videosPage — constructs VideosPage without navigating.
+   * Call navigateToVideos() in beforeEach.
+   */
+  videosPage: async ({ page, siteConfig }, use) => {
+    const videosPage = new VideosPage(page, siteConfig);
+    await use(videosPage);
+  },
+
+  /**
+   * contentPage — generic ContentSectionPage for simple content pages.
+   * Call navigateTo('/path') in beforeEach.
+   */
+  contentPage: async ({ page, siteConfig }, use) => {
+    const contentPage = new ContentSectionPage(page, siteConfig);
+    await use(contentPage);
   },
 });
 

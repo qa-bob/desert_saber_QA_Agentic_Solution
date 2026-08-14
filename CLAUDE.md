@@ -18,17 +18,30 @@ Build and maintain a comprehensive GUI, functional, and regression test suite fo
 |------|---------|
 | `site.config.json` | Site URL, name, flags (hasContactForm, skipVisual, etc.) |
 | `playwright.config.ts` | Playwright projects: desktop, mobile, tablet |
-| `src/pages/` | Page Object Model classes, one per page or section |
-| `src/fixtures/site.fixture.ts` | Custom Playwright fixtures exposing page objects |
+| `README.md` | Project overview, setup instructions, contributor rules |
+| `Agent.md` | Claude Code sub-agent reference (site-analyzer, test-generator) |
+| `Skills.md` | Slash command reference (/analyze-site, /generate-full-suite, etc.) |
+| `AGENTS.md` | Generic AI agent instructions (Copilot, Codex) |
+| `src/pages/base.page.ts` | BasePage base class — all page objects inherit from this |
+| `src/pages/home.page.ts` | HomePage — hero, CTAs, headings |
+| `src/pages/navigation.page.ts` | NavigationPage — nav links, mobile menu, link reachability |
+| `src/pages/contact.page.ts` | ContactFormPage — form discovery, field inspection |
+| `src/pages/platform.page.ts` | PlatformPage — Conundrum™ content, section headings |
+| `src/pages/testimonials.page.ts` | TestimonialsPage — testimonial cards and quotes |
+| `src/pages/videos.page.ts` | VideosPage — video embeds, native video, thumbnails |
+| `src/pages/content-section.page.ts` | ContentSectionPage — generic page for simple content pages |
+| `src/fixtures/site.fixture.ts` | Custom Playwright fixtures exposing all page objects |
 | `src/utils/` | Helpers: link-checker, visual-helper |
 | `src/types/` | TypeScript interfaces |
 | `tests/smoke/` | @smoke — availability and basic load tests |
 | `tests/navigation/` | @navigation — nav links, routing, menus |
 | `tests/forms/` | @forms — form fields, validation (no submission) |
-| `tests/functional/` | @functional — business logic, user flows |
+| `tests/functional/` | @functional — business logic, user flows, per-page tests |
 | `tests/visual/` | @visual — screenshot regression |
 | `tests/responsive/` | @responsive — layout at mobile/tablet/desktop |
 | `.claude/commands/` | Slash commands for agentic tasks |
+| `.claude/agents/` | Sub-agent definitions (site-analyzer, test-generator) |
+| `.claude/rules/` | Path-scoped rules (playwright.md, testing.md) |
 
 ---
 

@@ -189,10 +189,10 @@ import { SiteConfig } from '@site-types/site-config.types';
 
 This repo includes Claude Code sub-agents and slash commands for agentic workflows. See [Agent.md](Agent.md) for a full description.
 
-| Agent | When to Invoke |
-|---|---|
-| `site-analyzer` | Populate `site.config.json` from a live site |
-| `test-generator` | Generate site-specific tests for new pages/features |
+| Agent | File | When to Invoke |
+|-------|------|----------------|
+| `site-analyzer` | `.claude/agents/site-analyzer.md` | Populate `site.config.json` from a live site |
+| `test-generator` | `.claude/agents/test-generator.md` | Generate site-specific tests for new pages/features |
 
 Invoke via slash commands (see [Skills.md](Skills.md)):
 
@@ -200,23 +200,45 @@ Invoke via slash commands (see [Skills.md](Skills.md)):
 /analyze-site
 /generate-full-suite
 /run-smoke
+/update-baseline
+/generate-report
 ```
 
 ---
 
-## GitHub Folder
+## GitHub Folder — Complete Reference
 
-The `.github/` folder contains repository governance and CI/CD:
+The `.github/` folder contains repository governance, CI/CD, and instructions for AI coding tools.
 
-| File/Dir | Purpose |
-|---|---|
-| `AGENTS.md` | Instructions for GitHub Copilot coding agents |
-| `copilot-instructions.md` | GitHub Copilot chat customization |
-| `CONTRIBUTING.md` | Contribution process and code standards |
-| `PULL_REQUEST_TEMPLATE.md` | Checklist applied to all PRs |
-| `ISSUE_TEMPLATE/bug_report.md` | Template for reporting test failures |
-| `ISSUE_TEMPLATE/test_request.md` | Template for requesting new test coverage |
-| `workflows/playwright.yml` | GitHub Actions CI pipeline |
+### Instructions and Docs
+
+| File | Purpose | Audience |
+|------|---------|----------|
+| `AGENTS.md` | Coding agent instructions: POM rules, never-do list, file organization, templates | GitHub Copilot Workspace, Copilot coding agents |
+| `copilot-instructions.md` | Short-form Copilot Chat instructions for code style and architecture | GitHub Copilot Chat |
+| `CONTRIBUTING.md` | Step-by-step guide: branching, writing tests, PR process, troubleshooting | Human contributors |
+| `PULL_REQUEST_TEMPLATE.md` | PR checklist (tags, typecheck, smoke, no hardcoded URLs, etc.) | PR authors |
+
+### Issue Templates
+
+| File | Purpose |
+|------|---------|
+| `ISSUE_TEMPLATE/bug_report.md` | Template for reporting test failures or site bugs found during testing |
+| `ISSUE_TEMPLATE/test_request.md` | Template for requesting new test coverage for a page or feature |
+
+### CI/CD
+
+| File | Purpose |
+|------|---------|
+| `workflows/playwright.yml` | GitHub Actions: smoke gate → parallel full suite → TypeScript check |
+
+### What belongs in `.github/` vs root
+
+| Root file | `.github/` equivalent | Difference |
+|-----------|----------------------|------------|
+| `CLAUDE.md` | `.github/AGENTS.md` | Claude reads root; GitHub Copilot reads `.github/` |
+| `Agent.md` | `.github/AGENTS.md` | Claude Code agent docs vs Copilot Workspace |
+| `Skills.md` | *(no equivalent)* | Only Claude Code has slash commands |
 
 ---
 
