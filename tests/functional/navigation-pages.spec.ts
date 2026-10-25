@@ -50,10 +50,7 @@ test.describe('Navigation Pages Load Correctly @functional', () => {
         ).toBeTruthy();
 
         // If 404, skip content check but note the issue
-        if (status === 404) {
-          console.warn(`[functional] ${navPage.name} (${url}) returned 404 — page may not exist.`);
-          return;
-        }
+        test.skip(status === 404, `${navPage.name} (${url}) returned 404 — page may not exist`);
       }
 
       // Page has visible body text
