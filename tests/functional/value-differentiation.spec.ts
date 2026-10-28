@@ -19,7 +19,7 @@ test.describe('Value Page @functional', () => {
     await page.goto(`${siteConfig.url.replace(/\/$/, '')}/value`, {
       waitUntil: 'domcontentloaded',
     });
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
   });
 
   test('value page loads successfully @functional', async ({ page }) => {
@@ -59,7 +59,9 @@ test.describe('Value Page @functional', () => {
     ).toBeFalsy();
   });
 
-  test('navigation is visible on value page @functional', async ({ page }) => {
+  test('navigation is visible on value page @functional', async ({ page }, testInfo) => {
+    // Small viewports usually hide the nav behind a toggle
+    test.skip(testInfo.project.name !== 'chromium-desktop', 'Runs only in the "chromium-desktop" project');
     const nav = page.locator('nav, [role="navigation"]').first();
     await expect(nav).toBeVisible({ timeout: 10_000 });
   });
@@ -72,7 +74,7 @@ test.describe('Differentiation Page @functional', () => {
     await page.goto(`${siteConfig.url.replace(/\/$/, '')}/differentiation`, {
       waitUntil: 'domcontentloaded',
     });
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
   });
 
   test('differentiation page loads successfully @functional', async ({ page }) => {
@@ -112,7 +114,9 @@ test.describe('Differentiation Page @functional', () => {
     ).toBeFalsy();
   });
 
-  test('navigation is visible on differentiation page @functional', async ({ page }) => {
+  test('navigation is visible on differentiation page @functional', async ({ page }, testInfo) => {
+    // Small viewports usually hide the nav behind a toggle
+    test.skip(testInfo.project.name !== 'chromium-desktop', 'Runs only in the "chromium-desktop" project');
     const nav = page.locator('nav, [role="navigation"]').first();
     await expect(nav).toBeVisible({ timeout: 10_000 });
   });

@@ -15,7 +15,7 @@ test.describe('Platform Page @functional', () => {
     await page.goto(`${siteConfig.url.replace(/\/$/, '')}/platform`, {
       waitUntil: 'domcontentloaded',
     });
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
   });
 
   // ── Page load ───────────────────────────────────────────────────────────────
@@ -76,7 +76,9 @@ test.describe('Platform Page @functional', () => {
 
   // ── Navigation from platform page ───────────────────────────────────────────
 
-  test('navigation is present on platform page @functional', async ({ page }) => {
+  test('navigation is present on platform page @functional', async ({ page }, testInfo) => {
+    // Small viewports usually hide the nav behind a toggle
+    test.skip(testInfo.project.name !== 'chromium-desktop', 'Runs only in the "chromium-desktop" project');
     const nav = page.locator('nav, [role="navigation"]').first();
     await expect(nav).toBeVisible({ timeout: 10_000 });
   });

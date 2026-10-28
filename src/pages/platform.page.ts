@@ -30,7 +30,7 @@ export class PlatformPage extends BasePage {
   async navigateToPlatform(): Promise<void> {
     const url = this.url.replace(/\/$/, '') + PlatformPage.PATH;
     await this.page.goto(url, { waitUntil: 'domcontentloaded' });
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('load');
   }
 
   // ── Content discovery ─────────────────────────────────────────────────────────

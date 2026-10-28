@@ -26,7 +26,7 @@ export class VideosPage extends BasePage {
   async navigateToVideos(): Promise<void> {
     const url = this.url.replace(/\/$/, '') + VideosPage.PATH;
     await this.page.goto(url, { waitUntil: 'domcontentloaded' });
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('load');
   }
 
   // ── Media discovery ───────────────────────────────────────────────────────────

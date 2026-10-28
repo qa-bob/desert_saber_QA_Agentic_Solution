@@ -13,7 +13,7 @@ import { test, expect } from '@fixtures/site.fixture';
 test.describe('Homepage Functional @functional', () => {
   test.beforeEach(async ({ page, siteConfig }) => {
     await page.goto(siteConfig.url, { waitUntil: 'domcontentloaded' });
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
 
     // Dismiss cookie consent banner if present
     const cookieAccept = page.locator(
